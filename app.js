@@ -5,7 +5,6 @@ const knex = require("./src/db/knex");
 const adminRoutes = require("./src/modules/admin/adminRoutes");
 const doctorRoutes = require('./src/modules/doctor/doctorRoutes')
 const patientRoutes = require('./src/modules/patient/patientRoutes')
-const PORT = 4000;
 
 Model.knex(knex);
 app.use(express.json());
@@ -24,6 +23,7 @@ app.use((err, req, res, next) => {
 });
 
 
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`server starts at http://localhost:${PORT}`);
 });
