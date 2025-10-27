@@ -5,9 +5,18 @@ const knex = require("./src/db/knex");
 const adminRoutes = require("./src/modules/admin/adminRoutes");
 const doctorRoutes = require('./src/modules/doctor/doctorRoutes')
 const patientRoutes = require('./src/modules/patient/patientRoutes')
+const cors = require('cors');
 
 Model.knex(knex);
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://your-frontend-domain.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
 app.use(express.json());
+
+
+
 
 
 app.use("/admin", adminRoutes);
