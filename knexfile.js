@@ -2,7 +2,7 @@ require('dotenv').config();
 const fs = require('fs');
 
 const sharedConfig = {
-  migrations: { directory: './migrations' },
+  migrations: { directory: './migrations/migrations' },
   seeds: { directory: './seeds' },
 };
 
