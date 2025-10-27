@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
 const { Model } = require("objection");
-const knex = require("../src/db/knex");
-const adminRoutes = require("./modules/admin/adminRoutes");
-const doctorRoutes = require('./modules/doctor/doctorRoutes')
-const patientRoutes = require('./modules/patient/patientRoutes')
+const knex = require("./src/db/knex");
+const adminRoutes = require("./src/modules/admin/adminRoutes");
+const doctorRoutes = require('./src/modules/doctor/doctorRoutes')
+const patientRoutes = require('./src/modules/patient/patientRoutes')
 const PORT = 4000;
 
 Model.knex(knex);
