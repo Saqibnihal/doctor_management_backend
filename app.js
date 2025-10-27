@@ -10,7 +10,7 @@ const cors = require('cors');
 Model.knex(knex);
 app.use(cors({
   origin: ['http://localhost:5173', 'https://your-frontend-domain.com'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
   credentials: true,
 }));
 app.use(express.json());
