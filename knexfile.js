@@ -1,52 +1,24 @@
-// Update with your config settings.
-
-/**
- * @type { Object.<string, import("knex").Knex.Config> }
- */
 require("dotenv").config();
+const fs = require('fs');
+
 module.exports = {
   development: {
-    client: process.env.DB_CLIENT || "mysql2",
+    client: 'mysql2',
     connection: {
-      host: process.env.DB_HOST || "localhost",
-      user: process.env.DB_USER || "root",
-      password: process.env.DB_PASSWORD || "12345678",
-      database: process.env.DB_NAME || "doc",
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      ssl: process.env.DB_SSL === 'true'
+        ? { ca: fs.readFileSync('./certs/aiven-ca.pem') }
+        : false
     },
     migrations: {
-      directory: "./`migrations`",
+      directory: './migrations', 
     },
-  },
-
-  staging: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: "knex_migrations",
-    },
-  },
-
-  production: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: "knex_migrations",
-    },
-  },
+    seeds: {
+      directory: './seeds'
+    }
+  }
 };
