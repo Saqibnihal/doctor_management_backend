@@ -189,3 +189,26 @@ exports.dashboard = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+
+exports.getAllAppointments = async (req, res) => {
+  try {
+    const appointments = await Appointment.query()
+      .select(
+        'appointments.id',
+        'appointments.appointment_date',
+        'appointments.status',
+        'appointments.notes',
+        'doctors.name as doctorName',
+        'patients.name as patientName'
+      )
+      .leftJoin('doctors', 'appointments.doctor_id', 'doctors.id')
+      .leftJoin('patients', 'appointments.patient_id', 'patients.id')
+      .orderBy('appointments.created_at', 'desc');
+
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error('Error fetching all appointments:', error);
+    res.status(500).json({ message: 'Failed to fetch appointments', error });
+  }
+};

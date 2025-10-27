@@ -11,6 +11,7 @@ const {
   updatePatient,
   assignPatientToDoctor,
   dashboard,
+  getAllAppointments,
 } = require("./adminController");
 
 const router = express.Router();
@@ -35,5 +36,9 @@ router.patch("/patients/:id/assign-doctor",assignPatientToDoctor);
 
 //dashboard
 router.get("/dashboard", dashboard);
+
+//get all appointments
+router.get('/appointments', getAllAppointments);
+
 
 module.exports = router;
